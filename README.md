@@ -1,1 +1,1 @@
-# express-rest-basics
+# mern-social-api
