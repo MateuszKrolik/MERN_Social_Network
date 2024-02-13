@@ -1,1 +1,1 @@
-# mern-chat-frontend
+# mern-social-frontend
