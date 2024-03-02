@@ -1,5 +1,6 @@
 const { expect } = await import('chai');
 import sinon from 'sinon';
+import mongoose from 'mongoose';
 
 import User from '../models/user.js';
 import AuthController from '../controllers/auth.js';
@@ -24,6 +25,26 @@ describe('Auth Controller - Login', () => {
     });
 
     User.findOne.restore();
+  });
+
+  it('should send a response with a valid user status for an existing user', (done) => {
+    mongoose
+      .connect(
+        'mongodb+srv://mateuszkrolik87:1I9UbNZqMksVzkNk@cluster0.gdjmk4f.mongodb.net/test-messages'
+      )
+      .then((result) => {
+        const user = new User({
+          email: 'test@test.com',
+          password: 'tester',
+          name: 'Test',
+          posts: [],
+        });
+        return user.save();
+      })
+      .then(() => {});
+      .catch((err) => {
+        console.log(err);
+      });
   });
 });
 

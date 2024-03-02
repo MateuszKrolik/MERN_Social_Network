@@ -70,9 +70,6 @@ mongoose
         origin: '*',
       },
     });
-    io.on('connection', (socket) => {
-      console.log('Client connected');
-    });
   })
   .catch((err) => {
     console.log(err);
