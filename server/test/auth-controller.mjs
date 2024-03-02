@@ -34,14 +34,33 @@ describe('Auth Controller - Login', () => {
       )
       .then((result) => {
         const user = new User({
-          email: 'test@test.com',
+          email: 'test1@test.com',
           password: 'tester',
           name: 'Test',
           posts: [],
+          _id: '5c0f66b979af55031b34728a',
         });
         return user.save();
       })
-      .then(() => {});
+      .then(() => {
+        const req = { userId: '5c0f66b979af55031b34728a' };
+        const res = {
+          statusCode: 500,
+          userStatus: null,
+          status: (code) => {
+            this.statusCode = code;
+            return this;
+          },
+          json: (data) => {
+            this.userStatus = data.status;
+          },
+        };
+        AuthController.getUserStatus(req, res, () => {}).then(() => {
+          expect(res.statusCode).to.be.equal(200);
+          expect(res.userStatus).to.be.equal('I am new!');
+          done();
+        });
+      })
       .catch((err) => {
         console.log(err);
       });
