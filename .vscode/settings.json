@@ -1,0 +1,41 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.autoSave": "afterDelay",
+    "editor.autoSaveDelay": 1000,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
+    },
+    "javascript.validate.enable": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "eslint.options": {
+        "configFile": ".eslintrc.js"
+    },
+    "eslint.workingDirectories": ["./"],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/dist": true,
+        "**/build": true
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/dist": true,
+        "**/.git": true
+    },
+    "files.autoSave": "afterDelay"
+}
