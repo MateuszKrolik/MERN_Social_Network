@@ -1,1 +1,1 @@
-# mern-social-api
+# MERN Social Network
