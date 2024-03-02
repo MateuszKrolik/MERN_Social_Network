@@ -47,18 +47,24 @@ describe('Auth Controller - Login', () => {
         const res = {
           statusCode: 500,
           userStatus: null,
-          status: (code) => {
+          status: function (code) {
             this.statusCode = code;
             return this;
           },
-          json: (data) => {
+          json: function (data) {
             this.userStatus = data.status;
           },
         };
-        AuthController.getUserStatus(req, res, () => {}).then(() => {
+        AuthController.getStatus(req, res, () => {}).then(() => {
           expect(res.statusCode).to.be.equal(200);
           expect(res.userStatus).to.be.equal('I am new!');
-          done();
+          User.deleteMany({})
+            .then(() => {
+              return mongoose.disconnect();
+            })
+            .then(() => {
+              done();
+            });
         });
       })
       .catch((err) => {
@@ -66,13 +72,13 @@ describe('Auth Controller - Login', () => {
       });
   });
 });
+//   Auth Controller - Login
+//     ✔ should throw an error with code 500 if accessing the database fails
+//     ✔ should send a response with a valid user status for an existing user (1032ms)
 
-// Auth Controller - Login
-// ✔ should throw an error with code 500 if accessing the database fails
+//   Auth Middleware
+//     ✔ should throw an error if no authorization header is present
+//     ✔ should yield a userId after decoding the token
+//     ✔ should throw an error if the authorization header is only one string
 
-// Auth Middleware
-// ✔ should throw an error if no authorization header is present
-// ✔ should yield a userId after decoding the token
-// ✔ should throw an error if the authorization header is only one string
-
-// 4 passing (7ms)
+//   5 passing (1s)
