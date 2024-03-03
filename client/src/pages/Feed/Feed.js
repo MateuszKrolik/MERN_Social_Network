@@ -23,7 +23,7 @@ class Feed extends Component {
   };
 
   componentDidMount() {
-    fetch('https://localhost:8080/auth/status', {
+    fetch('https://mern-social-network-416113.ey.r.appspot.com/auth/status', {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + this.props.token,
@@ -41,7 +41,7 @@ class Feed extends Component {
       .catch(this.catchError);
 
     this.loadPosts();
-    const socket = openSocket('https://localhost:8080');
+    const socket = openSocket('https://mern-social-network-416113.ey.r.appspot.com');
     socket.on('posts', data => {
       if (data.action === 'create') {
         this.addPost(data.post);
@@ -95,7 +95,7 @@ class Feed extends Component {
       page--;
       this.setState({ postPage: page });
     }
-    fetch('https://localhost:8080/feed/posts?page=' + page, {
+    fetch('https://mern-social-network-416113.ey.r.appspot.com/feed/posts?page=' + page, {
       headers: {
         Authorization: 'Bearer ' + this.props.token,
       },
@@ -123,7 +123,7 @@ class Feed extends Component {
 
   statusUpdateHandler = event => {
     event.preventDefault();
-    fetch('https://localhost:8080/auth/status', {
+    fetch('https://mern-social-network-416113.ey.r.appspot.com/auth/status', {
       method: 'PATCH',
       headers: {
         Authorization: 'Bearer ' + this.props.token,
@@ -172,10 +172,10 @@ class Feed extends Component {
     formData.append('title', postData.title);
     formData.append('content', postData.content);
     formData.append('image', postData.image);
-    let url = 'https://localhost:8080/feed/post';
+    let url = 'https://mern-social-network-416113.ey.r.appspot.com/feed/post';
     let method = 'POST';
     if (this.state.editPost) {
-      url = 'https://localhost:8080/feed/post/' + this.state.editPost._id; //for editing
+      url = 'https://mern-social-network-416113.ey.r.appspot.com/feed/post/' + this.state.editPost._id; //for editing
       method = 'PUT';
     }
 
@@ -226,7 +226,7 @@ class Feed extends Component {
 
   deletePostHandler = postId => {
     this.setState({ postsLoading: true });
-    fetch('https://localhost:8080/feed/post/' + postId, {
+    fetch('https://mern-social-network-416113.ey.r.appspot.com/feed/post/' + postId, {
       method: 'DELETE',
       headers: {
         Authorization: 'Bearer ' + this.props.token,

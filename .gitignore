@@ -138,3 +138,6 @@ dist
 # Passwords
 nodemon.json
 .env
+app.yaml
+
+mern-social-network-416113-190cc246ad8f.json

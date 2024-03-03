@@ -10,24 +10,17 @@ const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
 
+const MulterGoogleCloudStorage = require('multer-google-storage');
+
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
 
 const app = express();
 
-const privateKey = fs.readFileSync('server.key');
-const certificate = fs.readFileSync('server.cert');
+// const privateKey = fs.readFileSync('server.key');
+// const certificate = fs.readFileSync('server.cert');
 
 // console.log(process.env.NODE_ENV);
-
-const fileStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'images');
-  },
-  filename: (req, file, cb) => {
-    cb(null, new Date().toISOString() + '-' + file.originalname);
-  },
-});
 
 const fileFilter = (req, file, cb) => {
   if (
@@ -41,6 +34,27 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+const upload = multer({
+  storage: new MulterGoogleCloudStorage.storageEngine({
+    projectId: 'mern-social-network-416113',
+    keyFilename: './mern-social-network-416113-190cc246ad8f.json',
+    bucket: 'mern-social-network-416113.appspot.com',
+    filename: (req, file, cb) => {
+      cb(null, new Date().toISOString() + '-' + file.originalname);
+    },
+  }),
+  fileFilter: fileFilter,
+});
+
+// const fileStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'images');
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, new Date().toISOString() + '-' + file.originalname);
+//   },
+// });
+
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, 'access.log'),
   {
@@ -53,10 +67,11 @@ app.use(morgan('combined', { stream: accessLogStream }));
 
 // app.use(bodyParser.urlencoded()); // x-www-form-urlencoded <form>
 app.use(bodyParser.json()); // application/json
-app.use(
-  multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
-);
-app.use('/images', express.static(path.join(__dirname, 'images')));
+// app.use(
+//   multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
+// );
+app.use(upload.single('image'));
+// app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*'); //allow access to any client
@@ -86,9 +101,8 @@ mongoose
     `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.gdjmk4f.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`
   )
   .then((result) => {
-    const server = https
-      .createServer({ key: privateKey, cert: certificate }, app)
-      .listen(process.env.PORT || 8080);
+    const server = app.listen(process.env.PORT || 8080);
+    // https.createServer({ key: privateKey, cert: certificate }, app)
     const io = require('./socket').init(server, {
       cors: {
         origin: '*',
@@ -101,10 +115,3 @@ mongoose
 
 // OpenSSL CMD
 // openssl req -nodes -new -x509 -keyout server.key -out server.cert
-// Country Name (2 letter code) [AU]:PL
-// State or Province Name (full name) [Some-State]:Dolny-Slask
-// Locality Name (eg, city) []:Wroclaw
-// Organization Name (eg, company) [Internet Widgits Pty Ltd]:
-// Organizational Unit Name (eg, section) []:
-// Common Name (e.g. server FQDN or YOUR name) []:localhost
-// Email Address []:test@test.com

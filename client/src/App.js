@@ -59,7 +59,7 @@ class App extends Component {
   loginHandler = (event, authData) => {
     event.preventDefault();
     this.setState({ authLoading: true });
-    fetch('https://localhost:8080/auth/login', {
+    fetch('https://mern-social-network-416113.ey.r.appspot.com/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ class App extends Component {
   signupHandler = (event, authData) => {
     event.preventDefault();
     this.setState({ authLoading: true });
-    fetch('https://localhost:8080/auth/signup', {
+    fetch('https://mern-social-network-416113.ey.r.appspot.com/auth/signup', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

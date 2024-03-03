@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
+const { Storage } = require('@google-cloud/storage');
+const storage = new Storage();
+
 const { validationResult } = require('express-validator');
 
 const io = require('../socket');
@@ -43,7 +46,7 @@ exports.createPost = async (req, res, next) => {
     error.statusCode = 422;
     throw error;
   }
-  const imageUrl = req.file.path;
+  const imageUrl = `https://mern-social-network-416113.appspot.com.storage.googleapis.com/${req.file.filename}`;
   const title = req.body.title;
   const content = req.body.content;
   const post = new Post({
@@ -105,7 +108,7 @@ exports.updatePost = async (req, res, next) => {
   const content = req.body.content;
   let imageUrl = req.body.image;
   if (req.file) {
-    imageUrl = req.file.path;
+    imageUrl = `https://mern-social-network-416113.appspot.com.storage.googleapis.com/${req.file.filename}`;
   }
   if (!imageUrl) {
     const error = new Error('No file picked.');
@@ -125,7 +128,8 @@ exports.updatePost = async (req, res, next) => {
       throw error;
     }
     if (imageUrl !== post.imageUrl) {
-      clearImage(post.imageUrl);
+      const oldImageFilename = post.imageUrl.split('/').pop();
+      clearImage(oldImageFilename);
     }
     post.title = title;
     post.imageUrl = imageUrl;
@@ -156,7 +160,8 @@ exports.deletePost = async (req, res, next) => {
       throw error;
     }
     // Check logged in user
-    clearImage(post.imageUrl);
+    const oldImageFilename = post.imageUrl.split('/').pop();
+    clearImage(oldImageFilename);
     await Post.findByIdAndDelete(postId);
     const user = await User.findById(req.userId);
     user.posts.pull(postId);
@@ -171,7 +176,18 @@ exports.deletePost = async (req, res, next) => {
   }
 };
 
-const clearImage = (filePath) => {
-  filePath = path.join(__dirname, '..', filePath);
-  fs.unlink(filePath, (err) => console.log(err));
+const clearImage = async (filename) => {
+  try {
+    await storage
+      .bucket('mern-social-network-416113.appspot.com')
+      .file(filename)
+      .delete();
+  } catch (err) {
+    console.log(err);
+  }
 };
+
+// const clearImage = (filePath) => {
+//   filePath = path.join(__dirname, '..', filePath);
+//   fs.unlink(filePath, (err) => console.log(err));
+// };
