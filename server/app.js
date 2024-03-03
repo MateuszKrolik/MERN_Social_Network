@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const https = require('https');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -13,6 +14,9 @@ const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
 
 const app = express();
+
+const privateKey = fs.readFileSync('server.key');
+const certificate = fs.readFileSync('server.cert');
 
 // console.log(process.env.NODE_ENV);
 
@@ -82,7 +86,9 @@ mongoose
     `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.gdjmk4f.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`
   )
   .then((result) => {
-    const server = app.listen(process.env.PORT || 8080);
+    const server = https
+      .createServer({ key: privateKey, cert: certificate }, app)
+      .listen(process.env.PORT || 8080);
     const io = require('./socket').init(server, {
       cors: {
         origin: '*',
@@ -92,3 +98,13 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+// OpenSSL CMD
+// openssl req -nodes -new -x509 -keyout server.key -out server.cert
+// Country Name (2 letter code) [AU]:PL
+// State or Province Name (full name) [Some-State]:Dolny-Slask
+// Locality Name (eg, city) []:Wroclaw
+// Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+// Organizational Unit Name (eg, section) []:
+// Common Name (e.g. server FQDN or YOUR name) []:localhost
+// Email Address []:test@test.com
