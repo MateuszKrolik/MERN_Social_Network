@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const helmet = require('helmet');
+const compression = require('compression');
 
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
@@ -34,7 +35,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-app.use(helmet());
+app.use(compression());
 
 // app.use(bodyParser.urlencoded()); // x-www-form-urlencoded <form>
 app.use(bodyParser.json()); // application/json
@@ -63,6 +64,8 @@ app.use((error, req, res, next) => {
   const data = error.data;
   res.status(status).json({ message: message, data: data });
 });
+
+app.use(helmet());
 
 mongoose
   .connect(
