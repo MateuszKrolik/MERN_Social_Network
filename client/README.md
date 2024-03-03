@@ -1,1 +1,0 @@
-# mern-social-frontend
