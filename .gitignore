@@ -131,3 +131,10 @@ dist
 
 # MacOS
 .DS_Store
+
+# Editor
+.vscode/
+
+# Passwords
+nodemon.json
+.env

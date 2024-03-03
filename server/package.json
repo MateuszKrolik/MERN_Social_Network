@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --timeout 10000",
-    "start": "nodemon app.js"
+    "start": "NODE_ENV=production MONGO_USER=${MONGO_USER} MONGO_PASSWORD=${MONGO_PASSWORD} MONGO_DEFAULT_DATABASE=${MONGO_DEFAULT_DATABASE} MONGO_DEFAULT_TEST_DATABASE=${MONGO_DEFAULT_TEST_DATABASE} nodemon app.js",
+    "start-server": "node app.js",
+    "start:dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",

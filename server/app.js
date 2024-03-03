@@ -10,6 +10,8 @@ const authRoutes = require('./routes/auth');
 
 const app = express();
 
+// console.log(process.env.NODE_ENV);
+
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'images');
@@ -61,10 +63,10 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    'mongodb+srv://mateuszkrolik87:1I9UbNZqMksVzkNk@cluster0.gdjmk4f.mongodb.net/messages'
+    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.gdjmk4f.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`
   )
   .then((result) => {
-    const server = app.listen(8080);
+    const server = app.listen(process.env.PORT || 8080);
     const io = require('./socket').init(server, {
       cors: {
         origin: '*',

@@ -9,7 +9,7 @@ describe('Auth Controller', () => {
   before((done) => {
     mongoose
       .connect(
-        'mongodb+srv://mateuszkrolik87:1I9UbNZqMksVzkNk@cluster0.gdjmk4f.mongodb.net/test-messages'
+        `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.gdjmk4f.mongodb.net/${process.env.MONGO_DEFAULT_TEST_DATABASE}`
       )
       .then((result) => {
         const user = new User({
