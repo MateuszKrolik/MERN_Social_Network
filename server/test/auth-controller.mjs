@@ -74,16 +74,3 @@ describe('Auth Controller', () => {
       });
   });
 });
-
-// npm test:
-
-// Auth Controller
-// ✔ should throw an error with code 500 if accessing the database fails
-// ✔ should send a response with a valid user status for an existing user (50ms)
-
-// Auth Middleware
-// ✔ should throw an error if no authorization header is present
-// ✔ should yield a userId after decoding the token
-// ✔ should throw an error if the authorization header is only one string
-
-// 5 passing (1s)
