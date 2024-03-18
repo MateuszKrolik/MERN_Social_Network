@@ -67,8 +67,6 @@
 -   [![Express.js][Express.js]][Express-url]
 -   [![MongoDB][MongoDB]][MongoDB-url]
 -   [![Mongoose][Mongoose]][Mongoose-url]
--   [![React][React]][React-url]
--   [![Webpack][Webpack]][Webpack-url]
 -   [![Docker][Docker]][Docker-url]
 -   [![Linux/Unix][Linux/Unix]][Linux/Unix-url]
 -   [![Node.js][Node.js]][Node-url]
@@ -85,6 +83,8 @@
 -   [![Mocha.js][Mocha.js]][Mocha.js-url]
 -   [![Chai.js][Chai.js]][Chai.js-url]
 -   [![Sinon.js][Sinon.js]][Sinon.js-url]
+-   [![React][React]][React-url]
+-   [![Webpack][Webpack]][Webpack-url]
 -   [![HTML5][HTML5]][HTML5-url]
 -   [![CSS3][CSS3]][CSS3-url]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
