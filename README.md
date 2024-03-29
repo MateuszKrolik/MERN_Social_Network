@@ -65,18 +65,25 @@
 ### Built With
 
 -   [![Express.js][Express.js]][Express-url]
+-   [![Node.js][Node.js]][Node-url]
+-   [![JavaScript][JavaScript]][JavaScript-url]
+-   [![TypeScript][TypeScript]][TypeScript-url]
+-   [![NodeMon][NodeMon]][NodeMon-url]
+-   [![NPM][NPM]][NPM-url]
 -   [![MongoDB][MongoDB]][MongoDB-url]
 -   [![Mongoose][Mongoose]][Mongoose-url]
--   [![React][React]][React-url]
--   [![Webpack][Webpack]][Webpack-url]
--   [![Docker][Docker]][Docker-url]
--   [![Linux/Unix][Linux/Unix]][Linux/Unix-url]
--   [![Node.js][Node.js]][Node-url]
--   [![NodeMon][NodeMon]][NodeMon-url]
--   [![JavaScript][JavaScript]][JavaScript-url]
--   [![NPM][NPM]][NPM-url]
 -   [![Socket.IO][Socket.IO]][Socket.IO-url]
 -   [![JSON Web Tokens][JSON Web Tokens]][JSON Web Tokens-url]
+-   [![Docker][Docker]][Docker-url]
+-   [![Linux/Unix][Linux/Unix]][Linux/Unix-url]
+-   [![Bash][Bash]][Bash-url]
+-   [![React][React]][React-url]
+-   [![React Router][React Router]][React Router-url]
+-   [![Axios][Axios]][Axios-url]
+-   [![Material-UI][Material-UI]][Material-UI-url]
+-   [![HTML5][HTML5]][HTML5-url]
+-   [![CSS3][CSS3]][CSS3-url]
+-   [![Webpack][Webpack]][Webpack-url]
 -   [![Google Cloud Platform][Google Cloud Platform]][Google Cloud Platform-url]
 -   [![GCP App Engine Flexible][GCP App Engine Flexible]][GCP App Engine Flexible-url]
 -   [![Google Cloud Storage][Google Cloud Storage]][Google Cloud Storage-url]
@@ -85,8 +92,6 @@
 -   [![Mocha.js][Mocha.js]][Mocha.js-url]
 -   [![Chai.js][Chai.js]][Chai.js-url]
 -   [![Sinon.js][Sinon.js]][Sinon.js-url]
--   [![HTML5][HTML5]][HTML5-url]
--   [![CSS3][CSS3]][CSS3-url]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -122,6 +127,7 @@ This is a list of things you need to use the software and how to install them.
     MONGO_PASSWORD = "ENTER YOUR MONGO_PASSWORD";
     MONGO_DEFAULT_DATABASE = "ENTER YOUR MONGO_DEFAULT_DATABASE";
     MONGO_DEFAULT_TEST_DATABASE = "ENTER YOUR MONGO_DEFAULT_TEST_DATABASE";
+    JWT_SECRET = "ENTER YOUR JWT_SECRET";
     ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -135,17 +141,23 @@ To test these out yourself visit this [Link](https://mern-social-network-416113.
 
 <div align="center">
   <a href="https://mern-social-network-416113.web.app/signup">
-    <img src="images/1_modal.gif" alt="modal">
+    <img src="images/1_auth_n_nav.gif" alt="Authentication">
+  </a>
+
+https://github.com/MateuszKrolik/MERN_Social_Network/assets/127691471/cd522993-ed44-414b-9669-f8a3b7a327ee
+
+  <a href="https://mern-social-network-416113.web.app/">
+    <img src="images/3_realtime_delete.gif" alt="realtime_delete">
   </a>
   <a href="https://mern-social-network-416113.web.app/">
-    <img src="images/2_pagination.gif" alt="pagination">
+    <img src="images/4_mobile.PNG" alt="mobile">
   </a>
   <a href="https://mern-social-network-416113.web.app/">
-    <img src="images/3_realtime.gif" alt="image_picker">
-  </a>
-  <a href="https://mern-social-network-416113.web.app/?page=2">
-    <img src="images/4_cloud_storage.jpeg" alt="pagination">
+    <img src="images/5_object_storage.jpg" alt="object_storage">
   </a>  
+  <a href="https://mern-social-network-416113.web.app/">
+    <img src="images/6_mongoDB.jpg" alt="object_storage">
+  </a>    
 </div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -155,33 +167,39 @@ To test these out yourself visit this [Link](https://mern-social-network-416113.
 ## Roadmap
 
 -   [x] Backend REST API via Node.js Framework(Express.js)
--   [x] Frontend Reactive SPA (React & ReactRouter Libraries)
--   [x] Monolithic Architecture: Model-View-Controller
--   [x] Cross-Origin-Resource-Sharing
+-   [x] Frontend Reactive Single-Page-App(SPA) - React & ReactRouter@6.4 Libraries
+-   [x] Monolithic Architecture: Model-View-Controller(MVC)
+-   [x] Cross-Origin-Resource-Sharing(CORS)
 -   [x] Dynamic routing
 -   [x] Hosted NoSQL Database (MongoDB Atlas)
 -   [x] Create-Read-Update-Delete Functionality
--   [x] Object Document Mapper (Mongoose)
+-   [x] Mongoose Object-Document-Mapper (ODM)
 -   [x] Authentication and Authorization
     -   [x] Password Encryption (Bcrypt)
-    -   [x] JSON Web Tokens
+    -   [x] JSON Web Tokens(JWT)
 -   [x] RealTime WebSocket Updates via Socket.io
--   [x] Test-Driven-Development(Manual, Unit and Integration) via:
+-   [x] Test-Driven-Development(TDD) - Manual, Unit and Integration via:
     -   [x] PostMan
     -   [x] Mocha.js
     -   [x] Chai.js
     -   [x] Sinon.js
+-   [x] TypeScript for Static & Strong Type Linting Checks
 -   [x] User Input Validation (Express-Validator)
 -   [x] Error Handling
+-   [x] Environment Variables for Securing Sensitive Data
 -   [x] Secure HTTP Response Headers(Helmet.js)
 -   [x] SSL/TLS Encryption
--   [x] File upload (Google Cloud Storage)
+-   [x] File upload/Object Storage (Google Cloud Storage)
 -   [x] Pagination
 -   [x] Asynchronous Requests
+-   [x] Axios HTTP Client(Browser Fetch API Alternative)
 -   [x] Docker Backend Deployment via GCP App Engine Flexible(PAAS)
 -   [x] WebPack for Module Bundling
+-   [x] Lazy Loading
 -   [x] Static Frontend Hosting via FireBase
--   [x] Mobile Responsiveness (Media Query CSS3)
+-   [x] Google's Material UI/Design React Components
+-   [x] DarkMode
+-   [x] Mobile Responsiveness
 
 See the [open issues](https://github.com/MateuszKrolik/MERN_Social_Network/issues) for a full list of proposed features (and known issues).
 
@@ -228,6 +246,7 @@ GitHub Repository Link: [GitHub Repository Link](https://github.com/MateuszKroli
 
 ## Acknowledgments
 
+-   [Free Material-UI Login & SignUp Templates](https://mui.com/material-ui/getting-started/templates/)
 -   [Img Shields](https://shields.io)
 -   [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 -   [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
@@ -251,7 +270,7 @@ GitHub Repository Link: [GitHub Repository Link](https://github.com/MateuszKroli
 [license-url]: https://github.com/MateuszKrolik/MERN_Social_Network/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/mateusz-królik-8b1862262
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/screenshot.jpg
 [Express.js]: https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express
 [Express-url]: https://expressjs.com/
 [MongoDB]: https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white
@@ -298,3 +317,13 @@ GitHub Repository Link: [GitHub Repository Link](https://github.com/MateuszKroli
 [Sinon.js-url]: https://sinonjs.org/
 [Postman]: https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white
 [Postman-url]: https://www.postman.com/
+[Material-UI]: https://img.shields.io/badge/Material--UI-ffffff?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNjAwIDQ3Ni4zMDAwMDAwMDAwMDAwNyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjUwMCIgaGVpZ2h0PSIxOTg1Ij48cGF0aCBkPSJNMCAyNTkuOFYwbDIyNSAxMjkuOXY4Ni42TDc1IDEyOS45djE3My4yeiIgZmlsbD0iIzAwYjBmZiIvPjxwYXRoIGQ9Ik0yMjUgMTI5LjlMNDUwIDB2MjU5LjhsLTE1MCA4Ni42LTc1LTQzLjMgMTUwLTg2LjZ2LTg2LjZsLTE1MCA4Ni42eiIgZmlsbD0iIzAwODFjYiIvPjxwYXRoIGQ9Ik0yMjUgMzAzLjF2ODYuNmwxNTAgODYuNnYtODYuNnoiIGZpbGw9IiMwMGIwZmYiLz48cGF0aCBkPSJNMzc1IDQ3Ni4zbDIyNS0xMjkuOVYxNzMuMmwtNzUgNDMuM3Y4Ni42bC0xNTAgODYuNnptMTUwLTM0Ni40VjQzLjNMNjAwIDB2ODYuNnoiIGZpbGw9IiMwMDgxY2IiLz48L3N2Zz4=&logoColor=white
+[Material-UI-url]: https://material-ui.com/
+[React Router]: https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white
+[React Router-url]: https://reactrouter.com/
+[Axios]: https://img.shields.io/badge/Axios-4EA94B?style=for-the-badge&logo=axios&logoColor=white
+[Axios-url]: https://axios-http.com/
+[Bash]: https://img.shields.io/badge/Bash-4EAA4B?style=for-the-badge&logo=gnu-bash&logoColor=white
+[Bash-url]: https://www.gnu.org/software/bash/
+[TypeScript]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]: https://www.typescriptlang.org/

@@ -3,3 +3,6 @@ server.cert
 server.key
 test/
 views/
+images/
+README.md
+package-lock.json
