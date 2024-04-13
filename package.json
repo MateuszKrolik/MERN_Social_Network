@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "mocha --timeout 10000",
+        "test": "NODE_ENV=production mocha --timeout 10000",
         "start": "NODE_ENV=production MONGO_USER=${MONGO_USER} MONGO_PASSWORD=${MONGO_PASSWORD} MONGO_DEFAULT_DATABASE=${MONGO_DEFAULT_DATABASE} MONGO_DEFAULT_TEST_DATABASE=${MONGO_DEFAULT_TEST_DATABASE} JWT_SECRET=${JWT_SECRET} nodemon app.js",
         "start-server": "node app.js",
         "start:dev": "nodemon app.js"
@@ -17,6 +17,7 @@
         "body-parser": "^1.20.2",
         "compression": "^1.7.4",
         "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
         "express": "^4.18.2",
         "express-validator": "^7.0.1",
         "helmet": "^7.1.0",

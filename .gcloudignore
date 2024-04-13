@@ -1,8 +1,16 @@
 node_modules/
 server.cert
 server.key
-test/
 views/
 images/
 README.md
+LICENSE
+.editorconfig
+.gitignore
+.env
+LICENSE
+CHANGELOG.md
+.github/
 package-lock.json
+socket.js
+access.log

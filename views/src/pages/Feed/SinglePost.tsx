@@ -18,15 +18,11 @@ const SinglePost = (props: SinglePostProps) => {
     const { postId } = useParams();
 
     useEffect(() => {
-        fetch(
-            "https://mern-social-network-416113.ey.r.appspot.com/feed/post/" +
-                postId,
-            {
-                headers: {
-                    Authorization: "Bearer " + props.token,
-                },
-            }
-        )
+        fetch("https://mern-social-api-s7k2op5jka-lm.a.run.app/feed/post/" + postId, {
+            headers: {
+                Authorization: "Bearer " + props.token,
+            },
+        })
             .then((res) => {
                 if (res.status !== 200) {
                     throw new Error("Failed to fetch status");

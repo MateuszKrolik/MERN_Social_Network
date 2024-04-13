@@ -139,6 +139,11 @@ dist
 nodemon.json
 .env
 app.yaml
+server.key
+server.cert
 
 # GCP Key
 mern-social-network-416113-190cc246ad8f.json
+
+# ci/cd (yet to add)
+cloudbuild.yaml

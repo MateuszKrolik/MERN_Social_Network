@@ -60,6 +60,12 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://mern-social-network-416113.web.app/)
 
+![alt text](<images/New Model diagram - Model.svg>)
+
+![alt text](<images/New Model diagram - users.svg>)
+
+![alt text](<images/New Model diagram - posts.svg>)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
