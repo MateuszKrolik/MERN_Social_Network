@@ -10,6 +10,8 @@ const helmet = require("helmet");
 const compression = require("compression");
 const morgan = require("morgan");
 const cors = require("cors");
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
 const MulterGoogleCloudStorage = require("multer-google-storage");
 
@@ -17,6 +19,35 @@ const feedRoutes = require("./routes/feed");
 const authRoutes = require("./routes/auth");
 
 const app = express();
+
+// Extended: https://swagger.io/specification/#infoObject
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: "3.1.0",
+        info: {
+            title: "Social Network API",
+            description: "Social Network API EndPoints",
+            contact: {
+                name: "Mateusz Krolik",
+            },
+            servers: ["https://mern-social-api-s7k2op5jka-lm.a.run.app"],
+        },
+        components: {
+            schemas: {},
+            securitySchemes: {
+                BearerAuth: {
+                    type: "http",
+                    scheme: "bearer",
+                    bearerFormat: "JWT",
+                },
+            },
+        },
+    },
+    apis: ["./routes/*.js"],
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // const privateKey = fs.readFileSync('server.key');
 // const certificate = fs.readFileSync('server.cert');
@@ -45,7 +76,6 @@ const upload = multer({
     }),
     fileFilter: fileFilter,
 });
-
 
 const accessLogStream = fs.createWriteStream(
     path.join(__dirname, "access.log"),

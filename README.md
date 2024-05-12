@@ -58,13 +58,25 @@
 
 ## About The Project
 
+### Click below image to open the WebSite 😁
+
 [![Product Name Screen Shot][product-screenshot]](https://mern-social-network-416113.web.app/)
+
+### Click below image to open the API Docs 🙃
+
+[![jsdoc_swagger](images/jsdoc_swagger.jpg)](https://mern-social-api-s7k2op5jka-lm.a.run.app/api-docs/)
+
+### MongoDB Schema Visualization 🙂 (Hackolade)
 
 ![alt text](<images/New Model diagram - Model.svg>)
 
 ![alt text](<images/New Model diagram - users.svg>)
 
 ![alt text](<images/New Model diagram - posts.svg>)
+
+### Component Tree Hierarchy Visualization 😁 (w/ Props)
+
+![react_component_hierarchy_tree](images/react_component_hierarchy_tree.jpeg)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -94,6 +106,7 @@
 -   [![GCP App Engine Flexible][GCP App Engine Flexible]][GCP App Engine Flexible-url]
 -   [![Google Cloud Storage][Google Cloud Storage]][Google Cloud Storage-url]
 -   [![Firebase Static Hosting][Firebase Static Hosting]][Firebase Static Hosting-url]
+-   [![SwaggerUI/OpenAPI][SwaggerUI/OpenAPI]][SwaggerUI/OpenAPI-url]
 -   [![Postman][Postman]][Postman-url]
 -   [![Mocha.js][Mocha.js]][Mocha.js-url]
 -   [![Chai.js][Chai.js]][Chai.js-url]
@@ -145,6 +158,8 @@ This is a list of things you need to use the software and how to install them.
 _Below you'll find visual usage example representation if form of screenshots.
 To test these out yourself visit this [Link](https://mern-social-network-416113.web.app/) 😉_
 
+https://github.com/MateuszKrolik/MERN_Social_Network/assets/127691471/fc140634-830f-4bb3-afe9-2085b6225d43
+
 <div align="center">
   <a href="https://mern-social-network-416113.web.app/signup">
     <img src="images/1_auth_n_nav.gif" alt="Authentication">
@@ -189,6 +204,8 @@ https://github.com/MateuszKrolik/MERN_Social_Network/assets/127691471/cd522993-e
     -   [x] Mocha.js
     -   [x] Chai.js
     -   [x] Sinon.js
+-   [x] Visualized MongoDB Schema (Hackolade)
+-   [x] JSDOC+SwaggerUI/OpenAPI auto-generated EndPoint Documentation
 -   [x] TypeScript for Static & Strong Type Linting Checks
 -   [x] User Input Validation (Express-Validator)
 -   [x] Error Handling
@@ -333,3 +350,5 @@ GitHub Repository Link: [GitHub Repository Link](https://github.com/MateuszKroli
 [Bash-url]: https://www.gnu.org/software/bash/
 [TypeScript]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
 [TypeScript-url]: https://www.typescriptlang.org/
+[SwaggerUI/OpenAPI]: https://img.shields.io/badge/-SwaggerUI/OpenAPI-%2385EA2D?style=for-the-badge&logo=swagger&logoColor=white
+[SwaggerUI/OpenAPI-url]: https://swagger.io/
