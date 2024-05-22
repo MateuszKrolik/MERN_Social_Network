@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "NODE_ENV=production mocha --timeout 10000",
-        "start": "NODE_ENV=production MONGO_USER=${MONGO_USER} MONGO_PASSWORD=${MONGO_PASSWORD} MONGO_DEFAULT_DATABASE=${MONGO_DEFAULT_DATABASE} MONGO_DEFAULT_TEST_DATABASE=${MONGO_DEFAULT_TEST_DATABASE} JWT_SECRET=${JWT_SECRET} nodemon app.js",
+        "start": "NODE_ENV=production MONGO_USER=${MONGO_USER} MONGO_PASSWORD=${MONGO_PASSWORD} MONGO_DEFAULT_DATABASE=${MONGO_DEFAULT_DATABASE} MONGO_DEFAULT_TEST_DATABASE=${MONGO_DEFAULT_TEST_DATABASE} JWT_SECRET=${JWT_SECRET} GCP_CREDENTIALS=${GCP_CREDENTIALS} nodemon app.js",
         "start-server": "node app.js",
         "start:dev": "nodemon app.js"
     },

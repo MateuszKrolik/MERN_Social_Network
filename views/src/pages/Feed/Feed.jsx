@@ -60,7 +60,7 @@ const Feed = (props) => {
         const fetchStatus = async () => {
             try {
                 const res = await axios.get(
-                    "https://mern-social-api-s7k2op5jka-lm.a.run.app/auth/status"
+                    "https://mkrolik-social-api-de4b456-s7k2op5jka-ew.a.run.app/auth/status"
                 );
                 setStatus(res.data.status);
             } catch (error) {
@@ -71,7 +71,7 @@ const Feed = (props) => {
         const loadPosts = async () => {
             try {
                 const res = await axios.get(
-                    "https://mern-social-api-s7k2op5jka-lm.a.run.app/feed/posts?page=" +
+                    "https://mkrolik-social-api-de4b456-s7k2op5jka-ew.a.run.app/feed/posts?page=" +
                         postPage
                 );
                 setPosts(res.data.posts);
@@ -85,7 +85,7 @@ const Feed = (props) => {
         fetchStatus();
         loadPosts();
         // socket.current = openSocket(
-        //   'https://mern-social-api-s7k2op5jka-lm.a.run.app'
+        //   'http://localhost:8080'
         // );
         // socket.current.on('posts', (data) => {
         //   if (data.action === 'create') {
@@ -127,7 +127,7 @@ const Feed = (props) => {
         }
         try {
             const res = await axios.get(
-                "https://mern-social-api-s7k2op5jka-lm.a.run.app/feed/posts?page=" +
+                "https://mkrolik-social-api-de4b456-s7k2op5jka-ew.a.run.app/feed/posts?page=" +
                     page,
                 {
                     validateStatus: function (status) {
@@ -159,7 +159,7 @@ const Feed = (props) => {
         event.preventDefault();
         axios
             .patch(
-                "https://mern-social-api-s7k2op5jka-lm.a.run.app/auth/status",
+                "https://mkrolik-social-api-de4b456-s7k2op5jka-ew.a.run.app/auth/status",
                 {
                     status: status,
                 }
@@ -191,11 +191,11 @@ const Feed = (props) => {
         formData.append("title", postData.title);
         formData.append("content", postData.content);
         formData.append("image", postData.image);
-        let url = "https://mern-social-api-s7k2op5jka-lm.a.run.app/feed/post";
+        let url = "https://mkrolik-social-api-de4b456-s7k2op5jka-ew.a.run.app/feed/post";
         let method = "POST";
         if (editPost) {
             url =
-                "https://mern-social-api-s7k2op5jka-lm.a.run.app/feed/post/" +
+                "https://mkrolik-social-api-de4b456-s7k2op5jka-ew.a.run.app/feed/post/" +
                 editPost._id; //for editing
             method = "PUT";
         }
@@ -234,7 +234,7 @@ const Feed = (props) => {
         setPostsLoading(true);
         try {
             const res = await axios.delete(
-                "https://mern-social-api-s7k2op5jka-lm.a.run.app/feed/post/" +
+                "https://mkrolik-social-api-de4b456-s7k2op5jka-ew.a.run.app/feed/post/" +
                     postId
             );
             console.log(res.data);

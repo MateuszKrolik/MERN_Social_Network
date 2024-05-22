@@ -1,23 +1,78 @@
 steps:
-  # Build the container image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '--platform=linux/amd64', '-t', 'gcr.io/$PROJECT_ID/SERVICE_NAME:$COMMIT_SHA', '.']
-  # Run tests
-  - name: "gcr.io/cloud-builders/npm"
-    args: ["test"]
-  # Push the container image to Container Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/SERVICE_NAME:$COMMIT_SHA']
-  # Deploy container image to Cloud Run
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
-    args:
-      - 'run'
-      - 'deploy'
-      - 'SERVICE_NAME'
-      - '--image'
-      - 'gcr.io/$PROJECT_ID/SERVICE_NAME:$COMMIT_SHA'
-      - '--region'
-      - 'SERVICE_REGION'
+    # Install dependencies
+    - name: "gcr.io/cloud-builders/npm"
+      args: ["install"]
+
+    # Run unit tests
+    - name: "gcr.io/cloud-builders/npm"
+      args: ["test"]
+      secretEnv:
+          [
+              "JWT_SECRET",
+              "MONGO_USER",
+              "MONGO_PASSWORD",
+              "MONGO_DEFAULT_TEST_DATABASE",
+              "GCP_CREDENTIALS",
+          ]
+
+    # Docker Build
+    - name: "gcr.io/cloud-builders/docker"
+      args:
+          [
+              "build",
+              "--platform=linux/amd64",
+              "-t",
+              "europe-west1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/mkrolik-social-api:${SHORT_SHA}",
+              ".",
+          ]
+
+    # Docker push to Google Artifact Registry
+    - name: "gcr.io/cloud-builders/docker"
+      args:
+          [
+              "push",
+              "europe-west1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/mkrolik-social-api:${SHORT_SHA}",
+          ]
+
+    # Deploy to Cloud Run
+    - name: google/cloud-sdk
+      args:
+          [
+              "gcloud",
+              "run",
+              "deploy",
+              "mkrolik-social-api-${SHORT_SHA}",
+              "--image=europe-west1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/mkrolik-social-api:${SHORT_SHA}",
+              "--region",
+              "europe-west1",
+              "--platform",
+              "managed",
+              "--allow-unauthenticated",
+              "--memory",
+              "128Mi",
+              "--cpu",
+              "1",
+              "--max-instances",
+              "3",
+              "--port",
+              "8080",
+              "--set-secrets",
+              "MONGO_USER=MONGO_USER:latest,MONGO_PASSWORD=MONGO_PASSWORD:latest,MONGO_DEFAULT_DATABASE=MONGO_DEFAULT_DATABASE:latest,MONGO_DEFAULT_TEST_DATABASE=MONGO_DEFAULT_TEST_DATABASE:latest,JWT_SECRET=JWT_SECRET:latest,GCP_CREDENTIALS=GCP_CREDENTIALS:latest",
+          ]
+
+availableSecrets:
+    secretManager:
+        - versionName: projects/${PROJECT_ID}/secrets/JWT_SECRET/versions/latest
+          env: "JWT_SECRET"
+        - versionName: projects/${PROJECT_ID}/secrets/MONGO_USER/versions/latest
+          env: "MONGO_USER"
+        - versionName: projects/${PROJECT_ID}/secrets/MONGO_PASSWORD/versions/latest
+          env: "MONGO_PASSWORD"
+        - versionName: projects/${PROJECT_ID}/secrets/MONGO_DEFAULT_TEST_DATABASE/versions/latest
+          env: "MONGO_DEFAULT_TEST_DATABASE"
+        - versionName: projects/${PROJECT_ID}/secrets/GCP_CREDENTIALS/versions/latest
+          env: "GCP_CREDENTIALS"
+
+# Store images in Google Artifact Registry
 images:
-  - 'gcr.io/$PROJECT_ID/SERVICE_NAME:$COMMIT_SHA'
+    - europe-west1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/mkrolik-social-api:${SHORT_SHA}

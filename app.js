@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const https = require("https");
+// const https = require("https");
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -14,6 +14,7 @@ const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
 const MulterGoogleCloudStorage = require("multer-google-storage");
+const { serviceAccountKey, keyFilePath } = require("./util/gcp");
 
 const feedRoutes = require("./routes/feed");
 const authRoutes = require("./routes/auth");
@@ -30,7 +31,6 @@ const swaggerOptions = {
             contact: {
                 name: "Mateusz Krolik",
             },
-            servers: ["https://mern-social-api-s7k2op5jka-lm.a.run.app"],
         },
         components: {
             schemas: {},
@@ -67,8 +67,8 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({
     storage: new MulterGoogleCloudStorage.storageEngine({
-        projectId: "mern-social-network-416113",
-        keyFilename: "./mern-social-network-416113-190cc246ad8f.json",
+        projectId: serviceAccountKey.project_id,
+        keyFilename: keyFilePath,
         bucket: "mern-social-network-416113.appspot.com",
         filename: (req, file, cb) => {
             cb(null, new Date().toISOString() + "-" + file.originalname);

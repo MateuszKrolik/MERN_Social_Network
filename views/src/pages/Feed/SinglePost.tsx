@@ -18,7 +18,7 @@ const SinglePost = (props: SinglePostProps) => {
     const { postId } = useParams();
 
     useEffect(() => {
-        fetch("https://mern-social-api-s7k2op5jka-lm.a.run.app/feed/post/" + postId, {
+        fetch("https://mkrolik-social-api-de4b456-s7k2op5jka-ew.a.run.app/feed/post/" + postId, {
             headers: {
                 Authorization: "Bearer " + props.token,
             },

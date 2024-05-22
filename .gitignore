@@ -142,8 +142,29 @@ app.yaml
 server.key
 server.cert
 
-# GCP Key
-mern-social-network-416113-190cc246ad8f.json
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# ci/cd (yet to add)
-cloudbuild.yaml
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk

@@ -1,8 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const { Storage } = require("@google-cloud/storage");
-const storage = new Storage();
+const { storage } = require("../util/gcp");
 
 const { validationResult } = require("express-validator");
 
@@ -165,7 +164,7 @@ exports.deletePost = async (req, res, next) => {
         }
         // Check logged in user
         const oldImageFilename = post.imageUrl.split("/").pop();
-        clearImage(oldImageFilename);
+        await clearImage(oldImageFilename);
         await Post.findByIdAndDelete(postId);
         const user = await User.findById(req.userId);
         user.posts.pull(postId);

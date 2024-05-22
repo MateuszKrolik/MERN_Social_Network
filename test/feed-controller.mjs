@@ -1,7 +1,7 @@
 const { expect } = await import("chai");
 import sinon from "sinon";
 import mongoose from "mongoose";
-import io from "../socket.js";
+// import io from "../socket.js";
 
 import User from "../models/user.js";
 import FeedController from "../controllers/feed.js";
@@ -43,12 +43,12 @@ describe("Feed Controller", () => {
             },
             json: () => {},
         };
-        const mockSocket = { emit: sinon.stub() };
-        sinon.stub(io, "getIO").callsFake(() => mockSocket);
+        // const mockSocket = { emit: sinon.stub() };
+        // sinon.stub(io, "getIO").callsFake(() => mockSocket);
         FeedController.createPost(req, res, () => {}).then((savedUser) => {
             expect(savedUser).to.have.property("posts");
             expect(savedUser.posts).to.have.length(1);
-            io.getIO.restore();
+            // io.getIO.restore();
             done();
         });
     });

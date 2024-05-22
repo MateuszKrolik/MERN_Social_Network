@@ -128,7 +128,7 @@ const App = () => {
     const loginHandler = (event, authData) => {
         event.preventDefault();
         setAuthLoading(true);
-        fetch("https://mern-social-api-s7k2op5jka-lm.a.run.app/auth/login", {
+        fetch("https://mkrolik-social-api-de4b456-s7k2op5jka-ew.a.run.app/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -174,7 +174,7 @@ const App = () => {
     const signupHandler = (event, authData) => {
         event.preventDefault();
         setAuthLoading(true);
-        fetch("https://mern-social-api-s7k2op5jka-lm.a.run.app/auth/signup", {
+        fetch("https://mkrolik-social-api-de4b456-s7k2op5jka-ew.a.run.app/auth/signup", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
